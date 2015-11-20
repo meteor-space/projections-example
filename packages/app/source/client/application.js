@@ -35,5 +35,5 @@ Space.Application.extend(Projections, 'App', {
       }
     }
   }
-  
+
 });
