@@ -40,4 +40,21 @@ Package.onUse(function(api) {
     'source/server/startup.js'
   ], 'server');
 
+  api.export('Projections');
+
+});
+
+Package.onTest(function(api) {
+
+  api.use([
+    'ecmascript',
+    'space:testing@2.0.0',
+    'projections:app',
+    'practicalmeteor:munit@2.1.5'
+  ]);
+
+  api.addFiles([
+    'tests/client/stores/cart-store.tests.js'
+  ], 'client');
+
 });
