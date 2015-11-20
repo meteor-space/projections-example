@@ -1,5 +1,14 @@
 describe("Projections.CartStore", function() {
 
+  beforeEach(function() {
+    this.cartId = Projections.App.prototype.configuration.cartId;
+  });
+
+  afterEach(function() {
+    Projections.Carts.remove({});
+    Projections.Products.remove({});
+  });
+
   it("sets up correct default state", function() {
     Projections.App.test(Projections.CartStore)
     .expect({
@@ -12,18 +21,15 @@ describe("Projections.CartStore", function() {
 
     it("adds it to the picked and removes it from the availables", function() {
       Projections.App.test(Projections.CartStore)
-      .given({
-        available: ['first', 'second', 'third'],
-        picked: []
-      })
       .when([
-        new Projections.ProductAdded({
-          productTitle: 'first'
+        new Projections.AddProductToCart({
+          targetId: this.cartId,
+          productTitle: 'Laptop'
         })
       ])
       .expect({
-        available: ['second', 'third'],
-        picked: ['first']
+        available: ['Bike', 'Car', 'T-Shirt', 'Coke', 'Beer'],
+        picked: ['Laptop']
       });
     });
 
@@ -33,17 +39,18 @@ describe("Projections.CartStore", function() {
 
     it("removes it from the picked and pushes it to the availables", function() {
       Projections.App.test(Projections.CartStore)
-      .given({
-        available: ['second', 'third'],
-        picked: ['first']
-      })
       .when([
-        new Projections.ProductRemoved({
-          productTitle: 'first'
+        new Projections.AddProductToCart({
+          targetId: this.cartId,
+          productTitle: 'Laptop'
+        }),
+        new Projections.RemoveProductFromCart({
+          targetId: this.cartId,
+          productTitle: 'Laptop'
         })
       ])
       .expect({
-        available: ['second', 'third', 'first'],
+        available: ['Laptop', 'Bike', 'Car', 'T-Shirt', 'Coke', 'Beer'],
         picked: []
       });
     });

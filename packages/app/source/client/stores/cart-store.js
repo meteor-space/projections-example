@@ -1,33 +1,38 @@
 Space.flux.Store.extend(Projections, 'CartStore', {
 
-  _products: ['Laptop', 'Bike', 'Car', 'T-Shirt', 'Coke', 'Beer'],
+  dependencies: {
+    configuration: 'configuration',
+    products: 'Projections.Products',
+    carts: 'Projections.Carts',
+    tracker: 'Tracker'
+  },
 
   reactiveVars() {
     return [{
-      available: this._products,
+      available: [],
       picked: []
     }];
   },
 
-  eventSubscriptions() {
+  sessionVars() {
     return [{
-      'Projections.ProductAdded': this._onProductAdded,
-      'Projections.ProductRemoved': this._onProductRemoved
+      cartId: this.configuration.cartId
     }];
   },
 
-  _onProductAdded(event) {
-    let newPicked = this.picked();
-    newPicked.push(event.productTitle);
-    this._setReactiveVar('available', _.without(this.available(), event.productTitle));
-    this._setReactiveVar('picked', newPicked);
+  computations() {
+    return [
+      this._calcAvailableProducts
+    ];
   },
 
-  _onProductRemoved(event) {
-    let newAvailable = this.available();
-    newAvailable.push(event.productTitle);
-    this._setReactiveVar('available', newAvailable);
-    this._setReactiveVar('picked', _.without(this.picked(), event.productTitle));
+  _calcAvailableProducts() {
+    let products = this.products.find().map(function(p) { return p.title; });
+    let cart = this.carts.findOne(this.cartId());
+    if (products && cart) {
+      this._setReactiveVar('available', _.difference(products, cart.products));
+      this._setReactiveVar('picked', cart.products);
+    }
   }
 
 });

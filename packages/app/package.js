@@ -12,6 +12,7 @@ Package.onUse(function(api) {
     'underscore',
     'blaze-html-templates',
     'ecmascript',
+    'mongo',
     'peerlibrary:blaze-components@0.13.0',
     'space:flux@0.6.0',
     'space:domain@0.1.0',
@@ -21,7 +22,10 @@ Package.onUse(function(api) {
   ]);
 
   api.addFiles([
-    'source/shared/namespace.js'
+    'source/shared/namespace.js',
+    'source/shared/api-commands.js',
+    'source/shared/collections/cart-collection.js',
+    'source/shared/collections/products-collection.js'
   ]);
 
   api.addFiles([
@@ -30,6 +34,8 @@ Package.onUse(function(api) {
     'source/client/views/cart.html',
     'source/client/views/cart.js',
     'source/client/stores/cart-store.js',
+    'source/client/controllers/cart-controller.js',
+    'source/client/apis/cart-api.js',
     'source/client/events.js',
     'source/client/application.js',
     'source/client/startup.js'
