@@ -27,7 +27,7 @@ Package.onTest(function(api) {
   api.use([
     'ecmascript',
     'space:testing@2.0.0',
-    'cart:base',
+    'cart:contract',
     'cart:domain',
     'practicalmeteor:munit@2.1.5'
   ]);
