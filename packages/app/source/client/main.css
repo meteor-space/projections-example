@@ -1,0 +1,22 @@
+body, html {
+  font-family: 'Arial', sans-serif;
+}
+
+.products {
+  float: left;
+}
+
+.products.available {
+  border-right: 1px solid #ccc;
+  padding-right: 20px;
+  margin-right: 20px;
+}
+
+.product {
+  color: #666;
+}
+
+.product:hover {
+  cursor: pointer;
+  color: black;
+}
