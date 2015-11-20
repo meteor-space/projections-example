@@ -11,4 +11,4 @@ dependencies:
     - mgp
 test:
   override:
-    - spacejam test-packages cart:domain
+    - spacejam test-packages packages:app
