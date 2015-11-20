@@ -1,7 +1,7 @@
 Space.messaging.Controller.extend(Projections, 'CartController', {
 
   dependencies: {
-    configuration: 'configuration'
+    cartStore: 'Projections.CartStore'
   },
 
   eventSubscriptions() {
@@ -13,14 +13,14 @@ Space.messaging.Controller.extend(Projections, 'CartController', {
 
   _onProductAdded(event) {
     this.send(new Projections.AddProductToCart({
-      targetId: this.configuration.cartId,
+      targetId: this.cartStore.cartId(),
       productTitle: event.productTitle
     }));
   },
 
   _onProductRemoved(event) {
     this.send(new Projections.RemoveProductFromCart({
-      targetId: this.configuration.cartId,
+      targetId: this.cartStore.cartId(),
       productTitle: event.productTitle
     }));
   }
