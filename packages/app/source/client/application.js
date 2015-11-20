@@ -2,12 +2,18 @@ Space.Application.extend(Projections, 'App', {
 
   configuration: {},
 
-  requiredModules: [],
+  requiredModules: [
+    'Space.flux'
+  ],
 
-  stores: [],
+  stores: [
+    'Projections.CartStore'
+  ],
 
   controllers: [],
 
-  components: []
+  components: [
+    'Projections.CartView'
+  ]
 
 });

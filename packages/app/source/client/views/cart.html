@@ -1,0 +1,14 @@
+<template name="cart_view">
+<div class="cart">
+  <h1>Cart</h1>
+
+  <div class="available-products">
+    <h2>Available Products</h2>
+    <ul class="product-list">
+    {{#each availableProducts}}
+      <li class="product">{{this}}</li>
+    {{/each}}
+    </ul>
+  </div>
+</div>
+</template>

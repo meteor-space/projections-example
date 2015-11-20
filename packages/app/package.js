@@ -9,7 +9,9 @@ Package.onUse(function(api) {
   api.versionsFrom('1.2.1');
 
   api.use([
+    'blaze-html-templates',
     'ecmascript',
+    'peerlibrary:blaze-components@0.13.0',
     'space:flux@0.6.0',
     'space:domain@0.1.0',
     'space:event-sourcing@2.1.0',
@@ -22,6 +24,10 @@ Package.onUse(function(api) {
   ]);
 
   api.addFiles([
+    'source/client/views/index.html',
+    'source/client/views/cart.html',
+    'source/client/views/cart.js',
+    'source/client/stores/cart-store.js',
     'source/client/application.js',
     'source/client/startup.js'
   ], 'client');
