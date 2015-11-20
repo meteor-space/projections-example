@@ -9,6 +9,7 @@ Package.onUse(function(api) {
   api.versionsFrom('1.2.1');
 
   api.use([
+    'underscore',
     'blaze-html-templates',
     'ecmascript',
     'peerlibrary:blaze-components@0.13.0',
@@ -24,10 +25,12 @@ Package.onUse(function(api) {
   ]);
 
   api.addFiles([
+    'source/client/styles/main.css',
     'source/client/views/index.html',
     'source/client/views/cart.html',
     'source/client/views/cart.js',
     'source/client/stores/cart-store.js',
+    'source/client/events.js',
     'source/client/application.js',
     'source/client/startup.js'
   ], 'client');
